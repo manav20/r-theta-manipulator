@@ -39,7 +39,7 @@ sys_cl = ss(A_lin_e - B_lin_e*K, B_lin_e, C, D);    % transfer function
 tf(sys_cl);
 
 % checking the lyapunov matrix equation for closed loop system which is driven by state feedback controller
-
+Q = eye(4);
 P = lyap(A_lin_e - B_lin_e*K, Q);
 eig(P);
 
