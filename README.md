@@ -5,7 +5,6 @@ The problem statement is to control a Theta-R Robot Manipulator. Since the model
 ### StateFeedback_1.m
 Our goal is to design a linear controller for the nonlinear system. We use the place command in matlab to place poles in the left half plane. The control input is given by<!--U = KX --> <a href="https://www.codecogs.com/eqnedit.php?latex=$U=K_xx$" target="_blank"><img src="https://latex.codecogs.com/gif.latex?$U=K_xx$" title="$U=K_xx$" /></a>. The controller is then implemented to control the non-linear system and an animation is generated.
 ![](StateFeedback_1-gif.gif)
-
 ### ObserverControllerCompensator_1.m
 This is an explanation
 
