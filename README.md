@@ -9,7 +9,8 @@ Our goal is to design a linear controller for the nonlinear system. We use the p
 This is an explanation.<br />
 ![](demo/ObserverControllerCompensator_1-gif.gif)
 
-## Ackermann Steering
+## Ackermann Steering<br/>
+Ackermann_Simulator.m<br/>
 The code simulates a very simplified kinematic model of ackermann steering commonly used in automobiles.<br />
 Ref link: https://www.xarg.org/book/kinematics/ackerman-steering/<br /><br />
 A simple PD controller is used to main a constant lateral distance. For the sake of simplicity we keep the forward velocity constant during the control action. The objective of this code was to biuld an intuition for tuning PD conitrol of an ackermann steered vehicle.<br />
