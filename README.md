@@ -40,5 +40,6 @@ Testing:        1) Kp = 1.5, Kd = 25  demos a working control ( but not best)
 Remarks: The setting point as default is 1.5 m given that car width is 
         only 0.15m the goal is extermenly large for any controller to reach.
         a more pragmatic value of 'goal' would be 0.5m. 
+![](ackermann simulation.gif)
 ##### For latex rendering: https://www.codecogs.com/latex/eqneditor.php
 
