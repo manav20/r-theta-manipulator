@@ -91,7 +91,7 @@ xlabel('in meters','Interpreter','latex')
 ylabel('in meters','Interpreter','latex')
 figure(1)
 title('Ackermann Simulator','Interpreter','latex')
-yline(goal,'-.r');
+line([-5 20],[goal goal],'Color','red','LineStyle','-.');
 legend('Steering Angle($\phi$)','Car Angle($\theta$)','Goal','Interpreter', 'latex');
 %%% Control Loop
 t = 0;
@@ -137,6 +137,10 @@ while (t < t_final)
 end
 hold on 
 plot(X(1,:),X(2,:));        % plot path of the car
-legend('Steering Angle($\phi$)','Car Angle($\theta$)','Goal','Car Path','Interpreter', 'latex');
-if vid_recorder == 1  close(vidObj);  end
+legend('Steering Angle($\phi$)','Car Angle($\theta$)','Goal','Path','Interpreter', 'latex');
+if vid_recorder == 1
+     currFrame = getframe(gcf);
+     writeVideo(vidObj,currFrame);
+     close(vidObj);  
+end
 vid_recorder = 0;
