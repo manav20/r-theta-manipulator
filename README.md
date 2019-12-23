@@ -1,13 +1,30 @@
 # Control-Systems
 ## Controlling a R- <a href="https://www.codecogs.com/eqnedit.php?latex=$\theta$" target="_blank"><img src="https://latex.codecogs.com/gif.latex?$\theta$" title="$\theta$" /></a> Nonlinear Robot Manipulator
 ### Linearizing the model
-The problem statement is to control a Theta-R Robot Manipulator. Since the model is non-linear, to control the robot using linear control methods and techniques we linearize the system about a equillibrium point. The equillibrium point for all the simulation is [pi/4  2  0  0].  
-### StateFeedback_1.m
-Our goal is to design a linear controller for the nonlinear system. We use the place command in matlab to place poles in the left half plane. The control input is given by U = K X. The controller is then implemented to control the non-linear system and an animation is generated.<br />
+The problem statement is to control a Theta-R Robot Manipulator. Since the model is non-linear, to control the robot using linear control methods and techniques we linearize the system about a equillibrium point. The equillibrium point for all the simulation is [pi/4  2  0  0]. 
+
+### Controller Design by Pole Placement
+#### State Feedback
+StateFeedback_1.m <br/>
+Our goal is to design a linear controller for the nonlinear system. We use the place command in matlab to place poles in the left half plane. The control input is given by U = K X. The controller is then implemented to control the non-linear system and an animation is generated. <br/>
 ![](demo/StateFeedback_1-gif.gif)
-### ObserverControllerCompensator_1.m
-This is an explanation.<br />
+#### Observer Compensator
+ObserverControllerCompensator_1.m <br/>
 ![](demo/ObserverControllerCompensator_1-gif.gif)
+
+### Controller Design using Linear Matrix Inequalities(LMIs)
+We use the [CVX](http://cvxr.com/cvx/) solver for solving LMIs, one can also use the Robust Control Toolbox from MATLAB.
+#### State Feedback
+LMI_StateFeedback_1.m <br/>
+<!--- #### Observer Compensator
+--->
+
+<!---
+### Model Predictive Controller
+#### State Feedback
+#### Observer Compensator
+--->
+
 
 ## Ackermann Steering<br/>
 Ackermann_Simulator.m<br/>
