@@ -90,6 +90,7 @@ T_c = [cos(phi) -sin(phi); sin(phi) cos(phi)];
 data_c = T_c * data_c;
 axis([-0.5 4 -0.5 4])
 axis('square')
+title('State Feedback using Observer', 'Interpreter', 'latex');
 timer_loc = [0 3.75];
 text_blk1_loc = [0 2.75];
 text_blk2_loc = [2 2.75];
