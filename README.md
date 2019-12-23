@@ -19,8 +19,8 @@ LMI_StateFeedback_1.m <br/>
 #### Optimal State Feedback
 LMI_OptimalStateFeedback_1.m <br/>
 We frame the Countinous Algebraic Ricatti Equation as an LMI and solve for feedback gain.
-<!--- #### Observer Compensator
---->
+#### Observer Compensator
+LMI_ObserverControllerCompensator_1.m <br/>
 
 <!---
 ### Model Predictive Controller
