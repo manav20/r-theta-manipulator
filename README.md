@@ -16,6 +16,9 @@ ObserverControllerCompensator_1.m <br/>
 We use the [CVX](http://cvxr.com/cvx/) solver for solving LMIs, one can also use the Robust Control Toolbox from MATLAB.
 #### State Feedback
 LMI_StateFeedback_1.m <br/>
+#### Optimal State Feedback
+LMI_OptimalStateFeedback_1.m <br/>
+We frame the Countinous Algebraic Ricatti Equation as an LMI and solve for feedback gain.
 <!--- #### Observer Compensator
 --->
 
