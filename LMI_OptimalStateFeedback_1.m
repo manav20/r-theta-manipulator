@@ -46,28 +46,10 @@ cvx_begin sdp quiet
     Z, zeros(2, 4),-inv(R)] <= 0;
     S >= eps*eye(4);
 cvx_end
-K = Z*inv(S)
+K = Z*inv(S);
 eigs(A-B*K);
 
 %% Animating the state feedback controller driving the nonlinear model. 
-
-%vidObj = VideoWriter('StateFeedback_1.avi');
-%open(vidObj);
-clf;
-data_c = [0 1;
-          0 0];   
-data_r = [0 2;
-          0 0];  
-phi = 0;
-T_c = [cos(phi) -sin(phi);
-      sin(phi) cos(phi)];
-data_c = T_c * data_c;
-axis([-4 4 -4 4])
-axis('square')
-% define handle objects
-cylinder = line('xdata',data_c(1,:), 'ydata', data_c(2,:),'linewidth', 6);
-
-rod = line('xdata',data_r(1,:), 'ydata', data_r(2,:),'linewidth', 3);
 % initial conditions for the state
 theta = pi/2;      
 r = 1.5;
@@ -85,22 +67,36 @@ m2 = 3;
 % Equillibrium 
 Xe = [pi/4 2 0 0]';
 Ue = [u1_e u2_e]';
-% Indicators
-timer_loc = [-3 3.5];
-text_blk1_loc = [-3 2.35];
-text_blk2_loc = [-0.5 2.35];
-box_pos = [0.8 -0.9 2.2 1.05];
-time_ind = text(timer_loc(1), timer_loc(2), 'Time = 0.00 s', 'FontSize', 10, 'color', 'k'); 
-states_ind = text(text_blk1_loc(1), text_blk1_loc(2), {['$\theta = $', sprintf('%.4f', theta/pi*180, '$\radian$')], ...
-                                                      ['$r = $', sprintf('%.4f', r, 'm')], ...
-                                                      ['$\dot{\theta} = $', sprintf('%.4f'), theta_dot, '$\radian$ /s'], ... 
-                                                      ['$\dot{r} = $', sprintf('%.4f'), r_dot, '$m/s$']}, 'FontSize', 10, 'color', 'k');
-
 % variables for plotting the result
 t_all = [];
 r_all = [];
 theta_all = [];
 i = 1;
+%------------- Animation and other Indicators -----------------------------
+vid_recorder = 0;
+if vid_recorder == 1
+vidObj = VideoWriter('Optimal State Feedback using LMIs.avi'); open(vidObj); end
+clf;
+data_c = [0 1; 0 0];   
+data_r = [0 2; 0 0];  
+phi = 0;
+T_c = [cos(phi) -sin(phi); sin(phi) cos(phi)];
+data_c = T_c * data_c;
+axis([-0.5 4 -0.5 4])
+axis('square');
+title('Optimal State Feedback', 'Interpreter', 'latex')
+timer_loc = [0 3.75];
+text_blk1_loc = [0 2.75];
+text_blk2_loc = [2 2.75];
+box_pos = [0.8 -0.9 2.2 1.05];
+cylinder = line('xdata',data_c(1,:), 'ydata', data_c(2,:),'linewidth', 6);
+rod = line('xdata',data_r(1,:), 'ydata', data_r(2,:),'linewidth', 3);
+time_ind = text(timer_loc(1), timer_loc(2), 'Time = 0.00 s', 'FontSize', 10, 'color', 'k'); 
+states_ind = text(text_blk1_loc(1), text_blk1_loc(2), {['$\theta = $', sprintf('%.4f', theta/pi*180, '$\radian$')], ...
+['$r = $', sprintf('%.4f', r, 'm')], ...
+['$\dot{\theta} = $', sprintf('%.4f'), theta_dot, '$\radian$ /s'], ... 
+['$\dot{r} = $', sprintf('%.4f'), r_dot, '$m/s$']}, 'FontSize', 10, 'color', 'k');
+% Control Loop
 while (t < t_final)
     t = t + dt;
     X = [theta r theta_dot r_dot]';
@@ -109,19 +105,18 @@ while (t < t_final)
     theta_dot = theta_dot + dt*(-2*m2*theta_dot*r*r_dot -g*cos(theta)*(m1*r1 + m2*r) + u(1))/((m1*(r1^2)) + m2*(r^2));
     r = r + r_dot*dt;
     r_dot = r_dot + dt*(u(2)/m2 - 9.81*sin(theta) + m2*(theta_dot^2)*r);
-    T_c = [cos(theta) -sin(theta);
-           sin(theta) cos(theta)];
+    % --------- animation -------------------------------------------------
+    T_c = [cos(theta) -sin(theta); sin(theta) cos(theta)];
     data_new_c = T_c * data_c;      % transforming cylinder to x,y
-    data_r = [0 r;
-              0 0];
+    data_r = [0 r; 0 0];
     data_new_r = T_c * data_r;      % transforming rod to x,y
     set(cylinder, 'xdata',data_new_c(1,:) ,'ydata',data_new_c(2, :), 'color', 'red');
     set(rod,'xdata',data_new_r(1,:), 'ydata', data_new_r(2,:), 'color', 'blue');
-    set(time_ind,'String', sprintf ('Time = %.2f s', t));
+    set(time_ind,'String', sprintf ('Time = %.2f s', t), 'Interpreter', 'latex');
     set(states_ind, 'String', {['$\theta = $', sprintf('%.4f', theta/pi*180), ' $^\circ$'],... 
-                               ['$r = $', sprintf('%.2f', r), ' m'],... 
-                               ['$\dot{\theta} = $', sprintf('%.2f', theta_dot), ' $^\circ$/s'],... 
-                               ['$\dot{r} = $', sprintf('%.2f', r_dot), ' m/s']}, 'Interpreter', 'latex');
+    ['$r = $', sprintf('%.2f', r), ' m'],... 
+    ['$\dot{\theta} = $', sprintf('%.2f', theta_dot), ' $^\circ$/s'],... 
+    ['$\dot{r} = $', sprintf('%.2f', r_dot), ' m/s']}, 'Interpreter', 'latex');
     grid on;
     drawnow;
     % updates for plotting
@@ -130,10 +125,11 @@ while (t < t_final)
     theta_all(i) = theta;
     i = i + 1;
     % frames for video
-    %currFrame = getframe(gcf);
-    %writeVideo(vidObj,currFrame);
+    if vid_recorder == 1  currFrame = getframe(gcf); 
+    writeVideo(vidObj,currFrame);end
 end
-%close(vidObj)
+if vid_recorder == 1; close(vidObj); 
+end
 
 
 
