@@ -12,7 +12,7 @@ Our goal is to design a linear controller for the nonlinear system. We use the p
 
 ### Controller Design using Linear Matrix Inequalities(LMIs)
 We use the [CVX](http://cvxr.com/cvx/) solver for solving LMIs, one can also use the Robust Control Toolbox from MATLAB.
-#### [State Feedback](../manav20/Control-Systems/LMI_StateFeedback_1.m)
+#### [State Feedback](LMI_StateFeedback_1.m)
 ![](demo/LMIStateFeedback_1-gif.gif)
 #### [Optimal State Feedback](../manav20/Control-Systems/LMI_OptimalStateFeedback_1.m)
 We frame the Countinous Algebraic Ricatti Equation as an LMI and solve for feedback gain. <br/>
