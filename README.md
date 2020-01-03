@@ -4,20 +4,20 @@
 The problem statement is to control a Theta-R Robot Manipulator. Since the model is non-linear, to control the robot using linear control methods and techniques we linearize the system about a equillibrium point. The equillibrium point for all the simulation is [pi/4  2  0  0]. 
 
 ### Controller Design by Pole Placement
-#### [State Feedback](../manav20/Control-Systems/StateFeedback_1.m)
+#### [State Feedback](StateFeedback_1.m)
 Our goal is to design a linear controller for the nonlinear system. We use the place command in matlab to place poles in the left half plane. The control input is given by U = K X. The controller is then implemented to control the non-linear system and an animation is generated. <br/>
 ![](demo/StateFeedback_1-gif.gif)
-#### [Observer Compensator](../manav20/Control-Systems/ObserverControllerCompensator_1.m)
+#### [Observer Compensator](ObserverControllerCompensator_1.m)
 ![](demo/ObserverControllerCompensator_1-gif.gif)
 
 ### Controller Design using Linear Matrix Inequalities(LMIs)
 We use the [CVX](http://cvxr.com/cvx/) solver for solving LMIs, one can also use the Robust Control Toolbox from MATLAB.
 #### [State Feedback](LMI_StateFeedback_1.m)
 ![](demo/LMIStateFeedback_1-gif.gif)
-#### [Optimal State Feedback](../manav20/Control-Systems/LMI_OptimalStateFeedback_1.m)
+#### [Optimal State Feedback](LMI_OptimalStateFeedback_1.m)
 We frame the Countinous Algebraic Ricatti Equation as an LMI and solve for feedback gain. <br/>
 ![](demo/LMIOptimalStateFeedback_1-gif.gif)
-#### [Observer Compensator](../manav20/Control-Systems/LMI_ObserverControllerCompensator_1.m)
+#### [Observer Compensator](LMI_ObserverControllerCompensator_1.m)
 ![](demo/LMIObserverControllerCompensator.gif)
 
 <!---
@@ -28,7 +28,7 @@ We frame the Countinous Algebraic Ricatti Equation as an LMI and solve for feedb
 
 
 ## Ackermann Steering<br/>
-Ackermann_Simulator.m<br/>
+#### [Ackermann_Simulator](Ackermann_Simulator.m)
 The code simulates a very simplified kinematic model of ackermann steering commonly used in automobiles.<br />
 Ref link: https://www.xarg.org/book/kinematics/ackerman-steering/<br /><br />
 A simple PD controller is used to main a constant lateral distance. For the sake of simplicity we keep the forward velocity constant during the control action. The objective of this code was to biuld an intuition for tuning PD conitrol of an ackermann steered vehicle.<br />
