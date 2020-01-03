@@ -28,7 +28,7 @@ We frame the Countinous Algebraic Ricatti Equation as an LMI and solve for feedb
 
 
 ## Ackermann Steering<br/>
-#### [Ackermann_Simulator](Ackermann_Simulator.m)
+#### [Ackermann Simulator](Ackermann_Simulator.m)
 The code simulates a very simplified kinematic model of ackermann steering commonly used in automobiles.<br />
 Ref link: https://www.xarg.org/book/kinematics/ackerman-steering/<br /><br />
 A simple PD controller is used to main a constant lateral distance. For the sake of simplicity we keep the forward velocity constant during the control action. The objective of this code was to biuld an intuition for tuning PD conitrol of an ackermann steered vehicle.<br />
