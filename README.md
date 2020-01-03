@@ -22,8 +22,10 @@ We frame the Countinous Algebraic Ricatti Equation as an LMI and solve for feedb
 
 <!---
 ### Model Predictive Controller
-#### State Feedback
-#### Observer Compensator
+#### [Unconstranied MPC]()
+![](demo/MPCUnconstrained_1-gif.gif)
+#### [Unconstrained MPC with Observer]()
+![](demo/MPCUnconstrainedObserver_1-gif.gif)
 --->
 
 
