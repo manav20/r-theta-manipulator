@@ -6,7 +6,7 @@ The problem statement is to control a Theta-R Robot Manipulator. Since the model
 ## Controller Design by Pole Placement
 ### [State Feedback](StateFeedback_1.m)
 After linearization we obtain the state matrices, the eigen values of theses matrices lie in the right half plane indicating that the open loop system is unstable. We use the place command in matlab to place poles of the clodes loop system in the left half plane. The control input is given by (U-Ue) = K*(X-Xe) because the equllibrium point is non zero. The linear controller is then implemented to control the non-linear system and an animation is generated. <br/>
-![](demo/StateFeedback_1-gif.gif)
+![](demo/StateFeedback_2-gif.gif)
 ### [Observer Compensator](ObserverControllerCompensator_1.m)
 We assume a scenario where we do not have sensors to measure all our states of the system, we implement a luenberger observer to estimate the states. Since our observer is linear, we again have to sybtract Ye and Ue before we feed the output and control input to the observer. We use pole placement to place the poles of (A-LC) in left half plane. As rule of thumb choose the observer poles 2-6 times faster than system poles. Since we havecomplete contrl over the observer we choose any initial condition. For comparison we select it as [0 0 0 0]' for all the codes.
 ![](demo/ObserverControllerCompensator_1-gif.gif)
